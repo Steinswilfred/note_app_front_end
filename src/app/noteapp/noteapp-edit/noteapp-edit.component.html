@@ -1,0 +1,86 @@
+<br>
+<h3 class="text-center">Edit Deatils</h3>
+<hr class="line">
+<div class="container short">
+    <br>
+    <form name="formposts" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+        <div class="form-group">
+            <input type="hidden" readonly name="id" [(ngModel)]="service.formpostdata.id">
+        </div>
+        <div class="form-group">
+            <label><b>Customer Name:</b></label>
+            <input type="text" name="Name" #Name="ngModel" [(ngModel)]="service.formpostdata.Name" class="form-control"
+                placeholder="Enter customer Name" minlength="3" maxlength="25" pattern="[A-Za-z]*" required>
+            <div class="validation-error" *ngIf="Name.touched && Name.invalid">
+                <div *ngIf="Name.errors?.['required']">Name is required</div>
+                <div *ngIf="Name.errors?.['minlength']">Name must contains 3 characters</div>
+                <div *ngIf="Name.errors?.['maxlength']">Name can't be more than 25 characters</div>
+                <div *ngIf="Name.errors?.['pattern']">Name must be contains only letters</div>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label><b>Select Item:</b></label>
+            <select name="Items" id="Items" class="form-control" required #Items="ngModel"
+                [(ngModel)]="service.formpostdata.Items">
+                <option value="" disabled selected>Choose Items</option>
+                <option *ngFor='let p of service.category' value="{{p.id}}">{{p.Item_name}}</option>
+            </select>
+            <div class="validation-error" *ngIf="Items.touched && Items.invalid">
+                <div>Items is required</div>
+            </div>
+        </div><br>
+
+        <div class="form-group">
+            <label><b>Weight (in grams):</b></label>
+            <div class="input-group">
+                <input type="text" name="Weight" #Weight="ngModel" [(ngModel)]="service.formpostdata.Weight"
+                    class="form-control" placeholder="Enter Weight in grams" pattern="^(\d+|\d+\.\d+|\.\d+)$" required>
+                <div class="input-group-append">
+                    <span class="input-group-text">grams</span>
+                </div>
+            </div>
+            <div class="validation-error" *ngIf="Weight.touched && Weight.invalid">
+                <div *ngIf="Weight.errors?.['required']">Weight is required</div>
+                <div *ngIf="Weight.errors?.['pattern']">Weight must be a number and can include decimals (Example: 5.00
+                    or 5)</div>
+            </div>
+        </div><br>
+
+
+        <div class="form-group">
+            <label><b>Gold loan number:</b></label>
+            <input type="text" name="gl_no" #gl_no="ngModel" [(ngModel)]="service.formpostdata.gl_no"
+                class="form-control" placeholder="Enter the Gold loan number" minlength="4" pattern="[0-9]*" required>
+            <div class="validation-error" *ngIf="gl_no.touched && gl_no.invalid">
+                <div *ngIf="gl_no.errors?.['required']">Gold loan number is required</div>
+                <div *ngIf="gl_no.errors?.['minlength']">It must be contains atleast 4 characters</div>
+                <div *ngIf="gl_no.errors?.['pattern']">It must be contains only numbers</div>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label><b>Bank Gold number:</b></label>
+            <input type="text" name="Bgl_no" #Bgl_no="ngModel" [(ngModel)]="service.formpostdata.Bgl_no"
+                class="form-control" placeholder="Enter Bank Gold number" minlength="4" pattern="[A-Za-z][0-9]*"
+                required>
+            <div class="validation-error" *ngIf="Bgl_no.touched && Bgl_no.invalid">
+                <div *ngIf="Bgl_no.errors?.['required']">Bank Gold number is required</div>
+                <div *ngIf="Bgl_no.errors?.['minlength']">It must be contains atleast 4 characters</div>
+                <div *ngIf="Bgl_no.errors?.['pattern']">It must start with letter followed by numbers</div>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label><b>Amount:</b></label>
+            <input type="text" name="Amount" #Amount="ngModel" [(ngModel)]="service.formpostdata.Amount"
+                class="form-control" placeholder="Enter Amount" minlength="3" pattern="[0-9]*" required>
+            <div class="validation-error" *ngIf="Amount.touched && Amount.invalid">
+                <div *ngIf="Amount.errors?.['required']">Amount is required</div>
+                <div *ngIf="Amount.errors?.['minlength']">Amount should be atleast Rs.100</div>
+                <div *ngIf="Amount.errors?.['pattern']">Amount must be contains only numbers</div>
+            </div>
+        </div><br>
+        <div class="form-group but1">
+            <button type="submit" [disabled]="!(form.valid && form.dirty)"
+                class="btn btn-lg btn-success form-control">Submit</button>
+        </div><br>
+    </form>
+</div>

@@ -1,0 +1,67 @@
+<br>
+<h3 id="hl" class="text-center">Add Customer Details</h3>
+<b>
+    <hr class="line">
+    <div class="container short">
+        <br>
+        <form name="formposts" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+            <div class="form-group">
+                <input type="hidden" readonly name="id" [(ngModel)]="service.signupdata.id">
+            </div>
+            
+          <div class="form-group">
+              <label>Name:</label>
+              <input type="text" name="username" #username="ngModel" [(ngModel)]="service.signupdata.username"
+                  class="form-control" placeholder="Enter Customer Name" minlength="3" maxlength="25"
+                  pattern="[a-zA-Z]*" required>
+              <div class="validation-error" *ngIf="username.touched && username.invalid">
+                  <div *ngIf="username.errors?.['required'] ">Name is required</div>
+                  <div *ngIf="username.errors?.['minlength']">Name must be minimum 3 characters</div>
+                  <div *ngIf="username.errors?.['maxlength']">Name cannot be more than 25 characters</div>
+                  <div *ngIf="username.errors?.['pattern']">Name must contains only letters</div>
+              </div>
+          </div><br>
+
+          <div class="form-group">
+            <label>Email ID:</label>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="service.signupdata.email"
+                class="form-control" placeholder="Enter Customer Name" minlength="3" maxlength="25"
+                 required>
+            <div class="validation-error" *ngIf="email.touched && email.invalid">
+                <div *ngIf="email.errors?.['required'] ">Name is required</div>
+                <div *ngIf="email.errors?.['minlength']">Name must be minimum 3 characters</div>
+                <div *ngIf="email.errors?.['maxlength']">Name cannot be more than 25 characters</div>
+                
+            </div>
+          </div><br>
+
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="service.signupdata.password"
+                class="form-control" placeholder="Enter Customer Name" minlength="3" maxlength="25"
+                 required>
+            <div class="validation-error" *ngIf="password.touched && password.invalid">
+                <div *ngIf="password.errors?.['required'] ">Name is required</div>
+                <div *ngIf="password.errors?.['minlength']">Name must be minimum 3 characters</div>
+                <div *ngIf="password.errors?.['maxlength']">Name cannot be more than 25 characters</div>
+            </div>
+          </div><br>
+
+          <div class="form-group">
+              <label>Confirm password:</label>
+              <input type="password" name="confirm_password" #confirm_password="ngModel" [(ngModel)]="service.signupdata.confirm_password"
+                  class="form-control" placeholder="Enter Customer Name" minlength="3" maxlength="25"
+                   required>
+              <div class="validation-error" *ngIf="confirm_password.touched && confirm_password.invalid">
+                  <div *ngIf="confirm_password.errors?.['required'] ">Name is required</div>
+                  <div *ngIf="confirm_password.errors?.['minlength']">Name must be minimum 3 characters</div>
+                  <div *ngIf="confirm_password.errors?.['maxlength']">Name cannot be more than 25 characters</div>
+              </div>
+          </div><br>
+            
+          <div class="form-group but1">
+              <button type="submit" [disabled]="!(form.valid && form.dirty)"
+                  class="btn btn-lg btn-success form-control">Submit</button>
+          </div><br>
+      </form>
+  </div>

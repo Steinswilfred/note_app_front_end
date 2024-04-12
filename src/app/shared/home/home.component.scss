@@ -1,0 +1,32 @@
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 30%;
+    float: left;
+    padding: 20px;
+   
+}  
+.float-container{
+    margin-left: 10%;
+}
+.a1,.a2,.a3{
+    height: 200px;
+    width: 90%;
+}
+.float-child {
+    box-shadow: 0 8px 16px 0 rgba(17, 17, 17, 0.2);
+    transition: 0.5s;
+    color: rgb(241, 11, 153);
+  }
+  .float-child:hover {
+    box-shadow: 0 32px 64px 0 #f36405;
+  }
+  .float-container {
+    padding: 2px 16px;
+  }
+  h1,p{
+    color: rgb(3, 97, 45);
+  }

@@ -1,0 +1,115 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleted List</title>
+</head>
+<body>
+    <br><br>
+    <h1 class="text-center">DELETED RECORDS</h1><br><br>
+    <div class="container">
+        <div>
+          <input type="search" placeholder="🔍 Search deleted records" class="form-control" [(ngModel)]="searchTerm">
+        </div>
+    </div>
+    <br><br>
+    <div class='container'>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Items</th>
+                    <th>Weight(in grams)</th>
+                    <th>Gold l.no</th>
+                    <th>Bank gl.no</th>
+                    <th>Amount</th>
+                    <th>Date & Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of service.deletedRecords | filter:searchTerm | paginate :{itemsPerPage:6,currentPage:p}">
+                    <td>{{ p.Name }}</td>
+                    <td>{{ p.category_name }}</td>
+                    <td>{{ p.Weight }}</td>
+                    <td>{{ p.gl_no }}</td>
+                    <td>{{ p.Bgl_no }}</td>
+                    <td>{{ p.Amount }}</td>
+                    <td>{{ p.Date | date: "dd-MMM-YYYY h:mm a" }}</td>
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <button class="btn btn-sm btn-success" (click)="restoreRecord(p.id)">Restore</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer text-center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleted List</title>
+</head>
+<body>
+    <br><br>
+    <h1 class="text-center">DELETED RECORDS</h1><br><br>
+    <div class="container">
+        <div>
+          <input type="search" placeholder="🔍 Search deleted records" class="form-control" [(ngModel)]="searchTerm">
+        </div>
+    </div>
+    <br><br>
+    <div class='container'>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Items</th>
+                    <th>Weight(in grams)</th>
+                    <th>Gold l.no</th>
+                    <th>Bank gl.no</th>
+                    <th>Amount</th>
+                    <th>Date & Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="service.deletedRecords | filter:searchTerm as filteredList">
+                    <ng-container *ngIf="filteredList.length > 0; else noRecords">
+                        <tr *ngFor="let p of filteredList | paginate: {itemsPerPage : 6, currentPage:p}">
+                            <td>{{p.Name}}</td>
+                            <td>{{p.category_name}}</td>
+                            <td>{{p.Weight}}</td>
+                            <td>{{p.gl_no}}</td>
+                            <td>{{p.Bgl_no }}</td>
+                            <td>{{p.Amount}}</td>
+                            <td>{{p.Date | date: "dd-MMM-YYYY h:mm a"}}</td>
+                            <td>
+                                <div style="display: flex; align-items: center;">
+                                    <button class="btn btn-sm btn-success" (click)="restoreRecord(p.id)">Restore</button>
+                                </div>    
+                            </td>
+                        </tr>
+                    </ng-container>
+                </ng-container>
+            </tbody>
+        </table>
+        <div class="footer text-center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+    <ng-template #noRecords>
+        <div class="text-center">
+            <p>Record not found</p>
+        </div>
+    </ng-template>
+</body>
+</html>
